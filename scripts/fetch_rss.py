@@ -2,6 +2,7 @@
 Script for fetching RSS feeds and parsing article data.
 """
 import feedparser
+import json
 
 def fetch_rss(feed_file_path):
     """
@@ -34,11 +35,28 @@ def fetch_rss(feed_file_path):
             })
     return articles
 
+def save_articles_to_file(articles, output_file):
+    """
+    Save the fetched articles to a JSON file.
+
+    Args:
+        articles (list of dict): List of article data parsed from RSS feeds.
+        output_file (str): Path to the output file.
+    """
+    try:
+        with open(output_file, "w") as file:
+            json.dump(articles, file, indent=4)
+        print(f"Articles saved to {output_file}")
+    except Exception as e:
+        print(f"Error saving articles to file: {e}")
+
 if __name__ == "__main__":
     # Path to RSS feed file
     feed_file_path = "data/rss_feeds.txt"
+    output_file = "data/fetched_articles.json"
 
-    # Fetch and print articles
+    # Fetch articles
     articles = fetch_rss(feed_file_path)
-    for article in articles:
-        print(f"Title: {article['title']}\nLink: {article['link']}\nSummary: {article['summary']}\n")
+
+    # Save articles to file
+    save_articles_to_file(articles, output_file)
