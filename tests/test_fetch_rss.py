@@ -2,6 +2,7 @@
 Unit tests for fetching RSS feeds with pytest.
 """
 import pytest
+import tempfile
 from scripts.fetch_rss import fetch_rss
 
 @pytest.fixture
@@ -22,8 +23,11 @@ def test_fetch_rss(mock_feedparser):
     """
     Test the fetch_rss function to ensure it correctly processes articles.
     """
-    feed_urls = ["http://mockfeed.com/rss"]
-    results = fetch_rss(feed_urls)
+    with tempfile.NamedTemporaryFile(mode="w+t", delete=False) as temp_feed_file:
+        temp_feed_file.write("http://mockfeed.com/rss\n")
+        temp_feed_file_path = temp_feed_file.name
+
+    results = fetch_rss(temp_feed_file_path)
 
     assert len(results) == 2
     assert results[0]["title"] == "Test Title 1"
