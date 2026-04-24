@@ -1,0 +1,10 @@
+https://openai.com/rss
+https://www.anthropic.com/index.xml
+https://venturebeat.com/category/ai/feed/
+https://www.technologyreview.com/topic/artificial-intelligence/feed/
+https://ai.googleblog.com/feeds/posts/default
+https://blogs.nvidia.com/blog/category/deep-learning-ai/feed/
+https://www.aitrends.com/feed/
+https://bair.berkeley.edu/blog.rss
+https://huggingface.co/blog/rss
+https://www.zdnet.com/topic/artificial-intelligence/rss.xml
