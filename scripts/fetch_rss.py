@@ -3,6 +3,7 @@ Script for fetching RSS feeds and parsing article data.
 """
 import feedparser
 import json
+from datetime import datetime
 
 def fetch_rss(feed_file_path):
     """
@@ -53,7 +54,10 @@ def save_articles_to_file(articles, output_file):
 if __name__ == "__main__":
     # Path to RSS feed file
     feed_file_path = "data/rss_feeds.txt"
-    output_file = "data/fetched_articles.json"
+
+    # Generate daily file name
+    date_suffix = datetime.now().strftime("%Y-%m-%d")
+    output_file = f"data/fetched_articles_{date_suffix}.json"
 
     # Fetch articles
     articles = fetch_rss(feed_file_path)
